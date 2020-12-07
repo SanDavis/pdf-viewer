@@ -29,10 +29,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
   firebase_admob:
-  pdf_flutter:
-  file_picker:
   path_provider:
-  pdf:
+  # pdf_flutter:
+  # file_picker: OBSOLETO
+  # pdf:
 
 
 dev_dependencies:

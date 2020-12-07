@@ -11,11 +11,25 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Center(
-          child: Text('VisorPDF'),
-        ),
+      appBar: AppBar(
+        title: Text('PDF Viewer'),
       ),
+      body: Container(
+          child: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            RaisedButton(
+              onPressed: null,
+              child: Text('Open PDF'),
+            ),
+            RaisedButton(
+              onPressed: null,
+              child: Text('Open PDF'),
+            ),
+          ],
+        ),
+      )),
     );
   }
 }
