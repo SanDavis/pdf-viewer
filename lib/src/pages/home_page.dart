@@ -13,6 +13,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('PDF Viewer'),
+        centerTitle: true,
       ),
       body: Container(
           child: Center(
