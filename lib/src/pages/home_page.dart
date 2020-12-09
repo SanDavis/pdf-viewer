@@ -40,6 +40,8 @@ class _HomePageState extends State<HomePage> {
     //Without parameters:
     final _localPath = await FlutterDocumentPicker.openDocument();
 
+    print(_localPath + ' asd');
+
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => PdfPage(_localPath)),

@@ -32,6 +32,8 @@ dependencies:
   path_provider:
   http:
   flutter_pdfview:
+  # native_pdf_view: ^3.8.0
+  flutter_full_pdf_viewer: ^1.0.6
   flutter_document_picker: ^4.0.0
   # pdf_flutter:
   # file_picker: OBSOLETO
