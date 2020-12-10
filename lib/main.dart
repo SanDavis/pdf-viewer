@@ -1,7 +1,12 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:pdf_viewer/src/pages/home_page.dart';
 
 void main() {
+  final String appId = 'com.example.pdf_viewer';
+
+  // Initialize without device test ids
+  Admob.initialize(appId);
   runApp(MyApp());
 }
 
