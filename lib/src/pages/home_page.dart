@@ -13,38 +13,53 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('PDF Viewer'),
-        centerTitle: true,
-      ),
-      body: Container(
-          child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            RaisedButton(
-              onPressed: () => _abrirPdfLocal(context),
-              child: Text('Open local PDF'),
-            ),
-            RaisedButton(
-              onPressed: null,
-              child: Text('Open PDF'),
-            ),
-          ],
+        appBar: AppBar(
+          title: Text('PDF Viewer'),
+          centerTitle: true,
         ),
-      )),
-    );
+        body: Center(
+          child: RaisedButton(
+            onPressed: () => _abrirPdfLocal(context),
+            child: Text('Open PDF'),
+          ),
+        ));
   }
 
   void _abrirPdfLocal(BuildContext context) async {
     //Without parameters:
-    final _localPath = await FlutterDocumentPicker.openDocument();
+    final localPath = await FlutterDocumentPicker.openDocument();
 
-    print(_localPath + ' asd');
+    // Si no se selecciona ningun archivo
+    if (localPath == null) {
+      return;
+    }
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => PdfPage(_localPath)),
-    );
+    //Si el archivo es un pdf
+    if (localPath.isNotEmpty && localPath.endsWith('.pdf')) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => PdfPage(
+                  pdfPath: localPath,
+                )),
+      );
+    } else {
+      //Si el archivo no es un pdf, se lanza un mensaje de alerta
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Invalid file'),
+            content: Text('Sorry, the file extension is invalid'),
+            actions: [
+              FlatButton(
+                child: Text('OK'),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 }
