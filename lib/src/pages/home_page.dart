@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_document_picker/flutter_document_picker.dart';
 import 'package:pdf_viewer/src/pages/pdf_page.dart';
 import 'package:pdf_viewer/src/providers/admob_provider.dart';
+import 'package:pdf_viewer/src/widgets/clicky_button.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -22,7 +23,6 @@ class _HomePageState extends State<HomePage> {
 
     _admobBanner = admobProvider.admodBanner();
     _interstitialAd = admobProvider.admodInterstitial();
-    _interstitialAd.load();
   }
 
   @override
@@ -33,22 +33,20 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
       body: Center(
-        child: RaisedButton(
+        child: ClickyButton(
+          child: Text(
+            'Open PDF',
+            style: TextStyle(color: Colors.white, fontSize: 22),
+          ),
           onPressed: () => _abrirPdfLocal(context),
-          child: Text('Open PDF'),
         ),
       ),
-      // bottomNavigationBar: Container(child: admodBanner()),
       bottomSheet: _admobBanner,
+      backgroundColor: Colors.blueAccent[700],
     );
   }
 
   void _abrirPdfLocal(BuildContext context) async {
-    _interstitialAd.load();
-    if (await _interstitialAd.isLoaded) {
-      _interstitialAd.show();
-    }
-
     //Without parameters:
     final localPath = await FlutterDocumentPicker.openDocument();
 
@@ -59,6 +57,11 @@ class _HomePageState extends State<HomePage> {
 
     //Si el archivo es un pdf
     if (localPath.isNotEmpty && localPath.endsWith('.pdf')) {
+      _interstitialAd.load();
+      if (await _interstitialAd.isLoaded) {
+        _interstitialAd.show();
+      }
+
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -66,7 +69,6 @@ class _HomePageState extends State<HomePage> {
                   pdfPath: localPath,
                 )),
       );
-      // admobProvider.admodIntersticial().show();
     } else {
       //Si el archivo no es un pdf, se lanza un mensaje de alerta
       showDialog(
