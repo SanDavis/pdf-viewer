@@ -1,6 +1,8 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_document_picker/flutter_document_picker.dart';
 import 'package:pdf_viewer/src/pages/pdf_page.dart';
+import 'package:pdf_viewer/src/providers/admob_provider.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -10,22 +12,43 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final AdmobProvider admobProvider = AdmobProvider();
+  AdmobInterstitial _interstitialAd;
+  AdmobBanner _admobBanner;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _admobBanner = admobProvider.admodBanner();
+    _interstitialAd = admobProvider.admodInterstitial();
+    _interstitialAd.load();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('PDF Viewer'),
-          centerTitle: true,
+      appBar: AppBar(
+        title: Text('PDF Viewer'),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () => _abrirPdfLocal(context),
+          child: Text('Open PDF'),
         ),
-        body: Center(
-          child: RaisedButton(
-            onPressed: () => _abrirPdfLocal(context),
-            child: Text('Open PDF'),
-          ),
-        ));
+      ),
+      // bottomNavigationBar: Container(child: admodBanner()),
+      bottomSheet: _admobBanner,
+    );
   }
 
   void _abrirPdfLocal(BuildContext context) async {
+    _interstitialAd.load();
+    if (await _interstitialAd.isLoaded) {
+      _interstitialAd.show();
+    }
+
     //Without parameters:
     final localPath = await FlutterDocumentPicker.openDocument();
 
@@ -43,6 +66,7 @@ class _HomePageState extends State<HomePage> {
                   pdfPath: localPath,
                 )),
       );
+      // admobProvider.admodIntersticial().show();
     } else {
       //Si el archivo no es un pdf, se lanza un mensaje de alerta
       showDialog(

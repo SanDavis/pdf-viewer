@@ -1,43 +1,23 @@
-// import 'package:firebase_admob/firebase_admob.dart';
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:flutter/material.dart';
 
-// class AdmobProvider {
-//   InterstitialAd myInterstitial;
+class AdmobProvider {
+  // AdmobInterstitial interstitialAd;
 
-//   static const MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
-//     keywords: [
-//       'Youtube',
-//       'TikTok',
-//       'facebook',
-//       'Telegram',
-//       'trabajo',
-//       'empleo',
-//       'cursos',
-//       'ingles'
-//     ],
-//     //contentUrl: 'https://flutter.io',
-//     childDirected: true,
-//     testDevices: [], // Android emulators are considered test devices
-//   );
+  Widget admodBanner() {
+    return AdmobBanner(
+      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      adSize: AdmobBannerSize.FULL_BANNER,
+    );
+  }
 
-//   AdmobProvider() {
-//     myInterstitial = _crearInterstitialAd();
-//   }
-
-//   InterstitialAd _crearInterstitialAd() {
-//     return InterstitialAd(
-//       /**
-//        * HAY QUE REEMPLAZAR EL BLOQUE DE ANUNCIOS
-//        * 'ca-app-pub-4380324633728780/5782011424' POR InterstitialAd.testAdUnitId
-//        * CUANDO SE ESTA DESARROLLANDO
-//        */
-//       adUnitId:
-//           'ca-app-pub-4380324633728780/5782011424', //, //id del bloque de anuncios InterstitialAd.testAdUnitId
-//       targetingInfo: targetingInfo,
-//       listener: (MobileAdEvent event) {
-//         if (event == MobileAdEvent.closed) {
-//           this.myInterstitial.dispose();
-//         }
-//       },
-//     );
-//   }
-// }
+  AdmobInterstitial admodInterstitial() {
+    return AdmobInterstitial(
+      adUnitId: 'ca-app-pub-3940256099942544/1033173712',
+      // listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+      //   // if (event == AdmobAdEvent.closed) this.admodInterstitial().load();
+      //   // handleEvent(event, args, 'Interstitial');
+      // },
+    ); //'ca-app-pub-3940256099942544/1033173712'
+  }
+}
