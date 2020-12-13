@@ -42,7 +42,8 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomSheet: _admobBanner,
-      backgroundColor: Colors.blueAccent[700],
+      // backgroundColor: Theme.of(context).accentColor,
+      backgroundColor: Colors.white,
     );
   }
 

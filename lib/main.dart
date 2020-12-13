@@ -27,7 +27,19 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.red,
+        primarySwatch: MaterialColor(0xFFDC0101, {
+          50: Color.fromRGBO(4, 131, 184, .1),
+          100: Color.fromRGBO(4, 131, 184, .2),
+          200: Color.fromRGBO(4, 131, 184, .3),
+          300: Color.fromRGBO(4, 131, 184, .4),
+          400: Color.fromRGBO(4, 131, 184, .5),
+          500: Color.fromRGBO(4, 131, 184, .6),
+          600: Color.fromRGBO(4, 131, 184, .7),
+          700: Color.fromRGBO(4, 131, 184, .8),
+          800: Color.fromRGBO(4, 131, 184, .9),
+          900: Color.fromRGBO(4, 131, 184, 1),
+        }),
+        // accentColor: Colors.white,
         // This makes the visual density adapt to the platform that you run
         // the app on. For desktop platforms, the controls will be smaller and
         // closer together (more dense) than on mobile platforms.
