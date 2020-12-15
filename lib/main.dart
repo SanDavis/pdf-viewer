@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pdf_viewer/src/pages/home_page.dart';
 
 void main() {
-  final String appId = 'com.example.pdf_viewer';
+  final String appId = 'com.flutter.pdf_viewer.app';
 
   // Initialize without device test ids
   Admob.initialize(appId);
