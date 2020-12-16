@@ -76,11 +76,23 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('Invalid file'),
-            content: Text('Sorry, the file extension is invalid'),
+            title: Text(
+              'Invalid file',
+              style: TextStyle(
+                fontSize: 22,
+                color: Colors.red,
+              ),
+            ),
+            content: Text(
+              'Sorry, the file extension is invalid',
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            ),
             actions: [
               FlatButton(
-                child: Text('OK'),
+                child: Text(
+                  'OK',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                ),
                 onPressed: () => Navigator.of(context).pop(),
               ),
             ],
