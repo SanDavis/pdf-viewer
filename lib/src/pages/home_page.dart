@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     //Si el archivo es un pdf
-    if (localPath.isNotEmpty && localPath.endsWith('.pdf')) {
+    if (localPath.isNotEmpty && localPath.toLowerCase().endsWith('.pdf')) {
       _interstitialAd.load();
       if (await _interstitialAd.isLoaded) {
         _interstitialAd.show();
